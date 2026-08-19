@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Remove file extension from URL (Optional)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Redirect all requests to the routes folder (except for existing files & folders)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ routes/$1 [L,QSA]
